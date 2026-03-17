@@ -31,23 +31,7 @@ const editor = useEditor({
     }),
     Image, ImageResize,
     ],
-    content: `
-        <table>
-          <tbody>
-            <tr>
-              <th>Name</th>
-              <th colspan="3">Description</th>
-            </tr>
-            <tr>
-              <td>Lauper</td>
-              <td>Singer</td>
-              <td>Songwriter</td>
-              <td>Actress</td>
-            </tr>
-          </tbody>
-        </table>
-        <img src="https://placehold.co/600x400" />
-      `,
+    content: `<h1 class="text-3xl font-bold mb-4">Welcome to the Editor</h1> hi im alok gupta`,
     immediatelyRender: false, // important to prevent SSR rendering
 });
 
