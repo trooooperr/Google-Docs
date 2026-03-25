@@ -16,7 +16,6 @@ interface ToolbarProps {
 }
 
 export const Toolbar = ({ editor }: ToolbarProps) => {
-  // force re-render to update Undo/Redo button active state
   const [, setUpdate] = React.useState(0);
 
   React.useEffect(() => {
