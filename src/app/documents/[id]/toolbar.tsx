@@ -1,9 +1,19 @@
 "use client";
 import React from "react";
-import { cn } from "@/lib/utils";
-import { LucideIcon } from "lucide-react";
-import {  SpellCheckIcon, PrinterIcon, RotateCcw, RotateCw } from "lucide-react";
 import { Editor as TipTapEditorInstance } from "@tiptap/react";
+import { cn } from "@/lib/utils";
+import { Separator } from "@/components/ui/separator";
+import { SpellCheckIcon, 
+        PrinterIcon, 
+        RotateCcw, 
+        RotateCw, 
+        BoldIcon, 
+        ItalicIcon, 
+        LucideIcon, 
+        MessageSquarePlusIcon, 
+        Underline, 
+        RemoveFormattingIcon
+      } from "lucide-react";
 
 interface ToolbarButtonProps {
   onClick?: () => void;
@@ -45,11 +55,39 @@ export const Toolbar = ({ editor }: ToolbarProps) => {
         onClick={() => editor?.chain().focus().undo().run()}
         isActive={editor?.can().undo()}
       />
+
       <ToolbarButton
         icon={RotateCw}
         onClick={() => editor?.chain().focus().redo().run()}
         isActive={editor?.can().redo()}
       />
+      <Separator orientation="vertical" className="h-6 w-px bg-gray-300 mx-2" />
+
+      <ToolbarButton
+        icon={BoldIcon}
+        onClick={() => editor?.chain().focus().toggleBold().run()}
+        isActive={editor?.isActive("bold")}
+      />
+      <ToolbarButton
+        icon={ItalicIcon}
+        onClick={() => editor?.chain().focus().toggleItalic().run()}
+        isActive={editor?.isActive("italic")}
+      />
+      <ToolbarButton
+        icon={Underline}
+        onClick={() => editor?.chain().focus().toggleUnderline().run()}
+        isActive={editor?.isActive("underline")}
+      />
+      <ToolbarButton
+        icon={MessageSquarePlusIcon}
+        onClick={() => console.log("Add comment")}
+        isActive= {false}
+      />
+      <ToolbarButton
+        icon={RemoveFormattingIcon}
+        onClick={() => editor?.chain().focus().unsetAllMarks().run()}
+      />
+
     </div>
   );
 };
@@ -57,9 +95,7 @@ export const Toolbar = ({ editor }: ToolbarProps) => {
 const ToolbarButton = ({ onClick, icon: Icon, isActive }: ToolbarButtonProps) => {
   return (
     <button
-      onClick={onClick}
-      className={cn(
-        "flex items-center justify-center rounded-sm p-1 hover:bg-gray-200",
+      onClick={onClick} className={cn("flex items-center justify-center rounded-sm p-1 hover:bg-gray-200",
         isActive ? "bg-gray-200/80" : ""
       )}
     >
